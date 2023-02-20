@@ -6,10 +6,10 @@ name: Humdrum CI/CD
 on:
   push:
     branches:
-      - 'main'
-      - 'develop'
   pull_request:
-    - 'feature/*'
+    branches:
+      - 'feature/*'
+      - 'develop'
 
 jobs:
   tests:
@@ -26,6 +26,6 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Test with pytest
-        if: (github.event.pull_request.merged == true)
+        if: (github.event == 'push')
         run: |
           pytest
