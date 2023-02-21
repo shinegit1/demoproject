@@ -1,28 +1,27 @@
 # This workflow will install Python dependencies, run tests with a single version of Python
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: Humdrum CI/CD
+name: Close Pull Request
 
+# only trigger on pull request closed events
 on:
   push:
-    branches:
   pull_request:
     types: [ closed ]
+
 jobs:
-  tests:
+  merge_job:
+    # this job will only run if the PR has been merged
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v3
+    - run: |
+        echo PR #${{ github.event.number }} has been merged
 
-        if: github.refs != 'refs/heads/feature/3'
-      - name: Display text
-        run: echo 'hello'
-        if: contains('refs/heads/develop', github.refs)
-      - name: Display merged
-        run: echo 'merged'
-
-        if: github.refs == 'refs/heads/feature/3'
-      - name: Display branch
-        run: echo branches #${{ github.refs }}
+  close_job:
+    # this job will only run if the PR has been closed without being merged
+    if: github.event.pull_request.merged == false
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo PR #${{ github.event.number }} has been closed without being merged
