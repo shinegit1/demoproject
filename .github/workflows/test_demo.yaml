@@ -32,7 +32,7 @@ jobs:
         run: |
           pytest
 
-  deploy in dev:
+  deploy_in_dev:
     # this job will only run if the PR has been merged
     if: github.event.pull_request.merged == true && contains('refs/heads/develop', github.refs)
     runs-on: ubuntu-latest
@@ -41,7 +41,7 @@ jobs:
       - run: |
           echo PR #${{ github.event.number }} has been merged
 
-  deploy in prod:
+  deploy_in_prod:
     # this job will only run if the PR has been merged
     if: github.event.pull_request.merged == true && contains('refs/heads/main', github.refs)
     runs-on: ubuntu-latest
