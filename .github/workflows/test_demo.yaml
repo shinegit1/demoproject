@@ -18,4 +18,13 @@ jobs:
 
         if: github.refs == 'refs/heads/feature/*' && github.event.pull_request.merged == true
       - name: Display text
-        run: echo 'hello ${{ github.refs }}'
+        run: echo 'hello' ${{ github.refs }}
+        if: github.event.pull_request.merged == true
+      - name: Display text
+        run: echo 'merged'
+        if: github.event.pull_request.merged == false
+      - name: Display text
+        run: echo 'opened'
+        if: github.refs == 'refs/heads/feature/*'
+      - name: Display text
+        run: echo 'branches' ${{ github.refs }}
