@@ -19,7 +19,7 @@ jobs:
       - name: Display text
         run: |
           if ((github.event_name == 'pull_request') and (github.event.action == 'closed') and (github.event.pull_request.merged == true)):
-          then print("pull request merged");
-          if not (github.event_name == 'pull_request' and github.event.action == 'closed' and github.event.pull_request.merged == true):
-          then print("hello user");
+            print("pull request merged")
+          else:
+            print("hello user")
         shell: python
