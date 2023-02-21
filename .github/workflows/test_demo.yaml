@@ -6,7 +6,6 @@ name: Humdrum CI/CD
 on:
   push:
     branches:
-      - 'feature/*'
   pull_request:
     branches:
       - 'feature/*'
@@ -31,5 +30,6 @@ jobs:
           pytest
 
         if: github.event.pull_request.merged == true
-      - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
+        steps:
+        - name: Display Python version
+          run: python -c "import sys; print(sys.version)"
