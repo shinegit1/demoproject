@@ -16,13 +16,13 @@ jobs:
       - name: Set up Python 3.10
         uses: actions/setup-python@v3
 
-        if: github.refs != 'refs/heads/feature/*'
+        if: github.refs != 'refs/heads/feature/3'
       - name: Display text
         run: echo 'hello'
         if: contains('refs/heads/develop', github.refs)
-      - name: Display text
+      - name: Display merged
         run: echo 'merged'
 
-        if: github.refs == 'refs/heads/feature/*'
-      - name: Display text
-        run: echo ' branches ${{ github.refs }} '
+        if: github.refs == 'refs/heads/feature/3'
+      - name: Display branch
+        run: echo ' branches {{ github.refs }} '
