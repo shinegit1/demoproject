@@ -16,8 +16,8 @@ jobs:
       - name: Set up Python 3.10
         uses: actions/setup-python@v3
 
+      - name: Display text
         if: (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true)
-          - name: Display text
-          run: |
-            print("hello user")
-          shell: python
+        run: |
+          print("hello user")
+        shell: python
