@@ -18,7 +18,7 @@ jobs:
 
       - name: Display text
         run: |
-          if (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true);
+          if ((github.event_name == 'pull_request') && (github.event.action == 'closed') && (github.event.pull_request.merged == true));
           then print("pull request merged");
           if (!(github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true));
           then print("hello user");
