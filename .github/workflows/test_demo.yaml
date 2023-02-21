@@ -6,12 +6,8 @@ name: Humdrum CI/CD
 on:
   push:
     branches:
-      - 'feature/*'
-  pull_request:
-    branches:
-      - 'feature/*'
-      - 'develop'
-    types: [opened, synchronize, closed]
+    pull_request:
+
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -30,6 +26,8 @@ jobs:
         run: |
           pytest
 
-        if: github.event.pull_request.merged == true
-      - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
+        if: github.event.pull_request.merged == true && github.event.action == 'closed'
+      - name: Display text
+        run: |
+          print("hello user")
+        shell: python
