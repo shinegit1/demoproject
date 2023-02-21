@@ -28,5 +28,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: merged request
-      - run: |
+        run: |
           echo PR ${{github.refs}} ${{ github.ref_name }} ${GITHUB_REF##*/}
