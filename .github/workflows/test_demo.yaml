@@ -29,6 +29,7 @@ jobs:
       - name: Test with pytest
         run: |
           pytest
-        if: (github.event.action == 'closed' && github.event.pull_request.merged != true)
+        if_merged:
+          if: github.event.pull_request.merged == true
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
