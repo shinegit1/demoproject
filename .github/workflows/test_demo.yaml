@@ -6,8 +6,8 @@ name: Humdrum CI/CD
 on:
   push:
     branches:
-    pull_request:
-
+  pull_request:
+    types: [ closed ]
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -16,6 +16,6 @@ jobs:
       - name: Set up Python 3.10
         uses: actions/setup-python@v3
 
-        if: [github.refs == 'refs/heads/feature/*' && github.event.pull_request.merged == true]
+        if: github.refs == 'refs/heads/feature/*' && github.event.pull_request.merged == true
       - name: Display text
-        run: echo 'hello'
+        run: echo 'hello ${{ github.refs }}'
