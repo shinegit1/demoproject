@@ -7,9 +7,6 @@ on:
   push:
     branches:
   pull_request:
-    branches:
-      - 'feature/*'
-      - 'develop'
     types: [opened, synchronize, closed]
 jobs:
   tests:
@@ -29,7 +26,6 @@ jobs:
         run: |
           pytest
 
-        if: github.event.pull_request.merged == true
-        steps:
-        - name: Display Python version
-          run: python -c "import sys; print(sys.version)"
+        if: github.event.pull_request.merged == true && github.event.action == 'closed'
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
