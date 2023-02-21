@@ -29,6 +29,6 @@ jobs:
       - name: Test with pytest
         run: |
           pytest
-        if: github.event.pull_request.merged == True && github.refs == 'refs/heads/feature/*'
+        if: (github.event.pull_request.merged == True && github.refs == 'refs/heads/feature/*')
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
