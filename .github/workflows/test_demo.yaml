@@ -25,4 +25,4 @@ jobs:
 
         if: github.refs == 'refs/heads/feature/3'
       - name: Display branch
-        run: echo ' branches {{ github.refs }} '
+        run: echo branches #${{ github.refs }}
