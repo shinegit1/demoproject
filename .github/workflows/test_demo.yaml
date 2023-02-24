@@ -30,6 +30,7 @@ jobs:
       - name: merged request
         run: |
           echo PR ${{github.refs}} ${{ github.ref_name }} ${GITHUB_REF##*/}
+      - uses: actions/checkout@v3
       - name: Verify static files
         uses: shinegit1/demoproject@v0.0.1
         id: verify-static-files
@@ -52,6 +53,7 @@ jobs:
       - name: merged request
         run: |
           echo PR ${{github.refs}} ${{ github.ref_name }} ${GITHUB_REF##*/}
+      - uses: actions/checkout@v3
       - name: Verify static files
         uses: shinegit1/demoproject@v0.0.1
         id: verify-static-files
