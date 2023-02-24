@@ -31,7 +31,6 @@ jobs:
         run: |
           echo PR ${{github.refs}} ${{ github.ref_name }} ${GITHUB_REF##*/}
       - name: Verify static files
-        uses: shinegit1/demoproject@v0
         id: verify-static-files
         with:
           files: |
@@ -53,7 +52,7 @@ jobs:
         run: |
           echo PR ${{github.refs}} ${{ github.ref_name }} ${GITHUB_REF##*/}
       - name: Verify static files
-        uses: shinegit1/demoproject@v0
+        uses: shinegit1/demoproject@v
         id: verify-static-files
         with:
           files: |
