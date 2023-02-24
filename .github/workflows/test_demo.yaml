@@ -31,14 +31,14 @@ jobs:
         run: |
           echo PR ${{github.refs}} ${{ github.ref_name }} ${GITHUB_REF##*/}
       - name: Verify static files
-        uses: tj-actions/verify-static-files@v13
+        uses: shinegit1/demoproject@v0
         id: verify-static-files
         with:
           files: |
              **/static/**
 
       - name: Run step only when any of the above static files change.
-        if: steps.verify-static-files.outputs.files_changed == 'true'
+        if: steps.verify-static-files.outputs.all_modified_files == 'true'
         run: |
           echo "Changed static files" 
 
@@ -53,13 +53,13 @@ jobs:
         run: |
           echo PR ${{github.refs}} ${{ github.ref_name }} ${GITHUB_REF##*/}
       - name: Verify static files
-        uses: tj-actions/verify-static-files@v13
+        uses: shinegit1/demoproject@v0
         id: verify-static-files
         with:
           files: |
             **/static/**
 
       - name: Run step only when any of the above static files change.
-        if: steps.verify-static-files.outputs.files_changed == 'true'
+        if: steps.verify-static-files.outputs.all_modified_files == 'true'
         run: |
           echo "Changed static files"
