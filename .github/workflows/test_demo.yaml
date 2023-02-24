@@ -30,6 +30,17 @@ jobs:
       - name: merged request
         run: |
           echo PR ${{github.refs}} ${{ github.ref_name }} ${GITHUB_REF##*/}
+      - name: Verify static files
+        uses: tj-actions/verify-static-files@v13
+        id: verify-static-files
+        with:
+          files: |
+             **/static/**
+
+      - name: Run step only when any of the above static files change.
+        if: steps.verify-static-files.outputs.files_changed == 'true'
+        run: |
+          echo "Changed static files" 
 
   production:
     # this job will only run if the PR has been merged
@@ -41,3 +52,14 @@ jobs:
       - name: merged request
         run: |
           echo PR ${{github.refs}} ${{ github.ref_name }} ${GITHUB_REF##*/}
+      - name: Verify static files
+        uses: tj-actions/verify-static-files@v13
+        id: verify-static-files
+        with:
+          files: |
+            **/static/**
+
+      - name: Run step only when any of the above static files change.
+        if: steps.verify-static-files.outputs.files_changed == 'true'
+        run: |
+          echo "Changed static files"
