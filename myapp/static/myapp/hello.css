@@ -1,3 +1,9 @@
 body{
     background-color: yellow;
 }
+
+h1{
+    font-size: 4.8em;
+    text-align: center;
+    color: red;
+}
