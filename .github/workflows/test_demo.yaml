@@ -31,7 +31,13 @@ jobs:
         run: |
           echo PR ${{github.refs}} ${{ github.ref_name }} ${GITHUB_REF##*/}
       - name: Verify static files
-        if: hashFiles('**/static/**') == 'true'
+        id: verify-static-files
+        with:
+          path: '/'
+          pattern: '**/static/**'
+
+      - name: Run step only when any of the above static files change.
+        if: steps.verify-static-files.outputs.all_modified_files == 'true'
         run: |
           echo "Changed static files" 
 
@@ -46,6 +52,13 @@ jobs:
         run: |
           echo PR ${{github.refs}} ${{ github.ref_name }} ${GITHUB_REF##*/}
       - name: Verify static files
-        if: hashFiles('**/static/**') == 'true'
+        uses: actions/checkout@v3
+        id: verify-static-files
+        with:
+          path: '/'
+          pattern: '**/static/**'
+
+      - name: Run step only when any of the above static files change.
+        if: steps.verify-static-files.outputs.all_modified_files == 'true'
         run: |
           echo "Changed static files"
