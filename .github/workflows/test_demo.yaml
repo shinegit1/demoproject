@@ -31,6 +31,7 @@ jobs:
         run: |
           echo PR ${{github.refs}} ${{ github.ref_name }} ${GITHUB_REF##*/}
       - name: Verify static files
+        uses: actions/checkout@v3
         id: verify-static-files
         with:
           files: |
@@ -48,11 +49,11 @@ jobs:
     if:
       contains('refs/heads/main', github.ref )
     steps:
-      - uses: actions/checkout@v3
       - name: merged request
         run: |
           echo PR ${{github.refs}} ${{ github.ref_name }} ${GITHUB_REF##*/}
       - name: Verify static files
+        uses: actions/checkout@v3
         id: verify-static-files
         with:
           files: |
