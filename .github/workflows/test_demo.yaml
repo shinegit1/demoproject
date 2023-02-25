@@ -31,10 +31,11 @@ jobs:
         run: |
           echo PR ${{github.refs}} ${{ github.ref_name }} ${GITHUB_REF##*/}
       - name: Verify static files
-        uses: actions/checkout@v3
         id: verify-static-files
+        uses: tj-actions/changed-files@v35
         with:
-          path: '**/static/**'
+          files: |
+            **/static/**
 
       - name: Run step only when any of the above static files change.
         if: steps.verify-static-files.outputs.all_modified_files == 'true'
