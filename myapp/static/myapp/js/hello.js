@@ -1,4 +1,4 @@
 let button =document.getElementById("Btn");
 function change_btn_color(){
-    button.style.color ="yellow";
+    button.style.color ="gray";
 }
