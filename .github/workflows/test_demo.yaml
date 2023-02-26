@@ -41,8 +41,8 @@ jobs:
         id: changed-migration-files
         uses: tj-actions/changed-files@v23
         with:
-        files: |
-          **000**.py
+          files: |
+            **000**.py
       - name: Run step only when any of the above migration files changed.
         if: steps.changed-migration-files.outputs.any_changed == 'true'
         run: |
