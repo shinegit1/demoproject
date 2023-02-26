@@ -37,7 +37,7 @@ jobs:
             **/static/**
       - name: Run step only when any of the above static files changed.
         if: steps.changed-static-files.outputs.any_changed == 'true'
-        run: |
-          for changed_file in {{steps.changed-static-files.outputs.all }}:
-            print(changed_file)
-        shell: python
+      - run: |
+          for changed_file in ${{ steps.changed-static-files.outputs.all }}; do
+            echo "Do something with this ${changed_file}."
+          done
