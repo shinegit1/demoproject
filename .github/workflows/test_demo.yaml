@@ -26,9 +26,6 @@ jobs:
     needs: [ tests ]
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v3
-        with:
-          python-version: '3.x'
       - name: get static files
         id: changed-static-files
         uses: tj-actions/changed-files@v23
