@@ -37,3 +37,14 @@ jobs:
         run: |
           print("static files changed")
         shell: python
+      - name: get migration files
+        id: changed-migration-files
+        uses: tj-actions/changed-files@v23
+        with:
+        files: |
+          **000**.py
+      - name: Run step only when any of the above migration files changed.
+        if: steps.changed-migration-files.outputs.any_changed == 'true'
+        run: |
+           print("migration files changed")
+        shell: python
