@@ -1,0 +1,25 @@
+body{
+    background-color: yellow;
+}
+
+h1{
+    font-size: 3.5em;
+    text-align: center;
+    color: blue;
+}
+
+p{
+    font-size: 40px;
+    color: green;
+}
+
+#Btn{
+    padding: 30px;
+    background-color: yellow;
+    color: red;
+}
+.para1{
+    font-size: 30px;
+    color: blue;
+    background-color: yellow;
+}

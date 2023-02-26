@@ -23,21 +23,28 @@ jobs:
   development:
     # this job will only run if the PR has been merged
     runs-on: ubuntu-latest
-    needs: [tests]
-    if:
-      contains('refs/heads/develop', github.ref )
+    needs: [ tests ]
     steps:
-      - name: merged request
+      - uses: actions/checkout@v3
+      - name: get static files
+        id: changed-static-files
+        uses: tj-actions/changed-files@v23
+        with:
+          files: |
+            **/static/**
+      - name: Run step only when any of the above static files changed.
+        if: steps.changed-static-files.outputs.any_changed == 'true'
         run: |
-          echo PR ${{github.refs}} ${{ github.ref_name }} ${GITHUB_REF##*/}
-
-  production:
-    # this job will only run if the PR has been merged
-    runs-on: ubuntu-latest
-    needs: [tests]
-    if:
-      contains('refs/heads/main', github.ref )
-    steps:
-      - name: merged request
+          print("static files changed")
+        shell: python
+      - name: get migration files
+        id: changed-migration-files
+        uses: tj-actions/changed-files@v23
+        with:
+          files: |
+            **/000**.py
+      - name: Run step only when any of the above migration files changed.
+        if: steps.changed-migration-files.outputs.any_changed == 'true'
         run: |
-          echo PR ${{github.refs}} ${{ github.ref_name }} ${GITHUB_REF##*/}
+           print("migration files changed")
+        shell: python
