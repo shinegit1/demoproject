@@ -19,6 +19,7 @@ jobs:
       - name: Test with pytest
         run: |
           pytest
+
       - name: get static files
         id: changed-static-files
         uses: tj-actions/changed-files@v23
@@ -29,6 +30,7 @@ jobs:
         if: steps.changed-static-files.outputs.any_changed == 'true'
       - run: |
           echo "static files"
+      - name: Get all files
       - id: files
         uses: jitterbit/get-changed-files@v1
       - run: |
