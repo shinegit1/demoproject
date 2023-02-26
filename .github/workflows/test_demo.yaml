@@ -20,6 +20,15 @@ jobs:
         run: |
           pytest
 
+  development:
+    # this job will only run if the PR has been merged
+    runs-on: ubuntu-latest
+    needs: [ tests ]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
       - name: get static files
         id: changed-static-files
         uses: tj-actions/changed-files@v23
@@ -28,12 +37,6 @@ jobs:
             **/static/**
       - name: Run step only when any of the above static files changed.
         if: steps.changed-static-files.outputs.any_changed == 'true'
-      - run: |
-          echo "static files"
-      - name: Get all files
-      - id: files
-        uses: jitterbit/get-changed-files@v1
-      - run: |
-          for changed_file in ${{ steps.files.outputs.all }}; do
-            echo "Do something with this ${changed_file}."
-          done
+        run: |
+          print("static files changed")
+        shell: python
