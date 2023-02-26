@@ -27,17 +27,23 @@ jobs:
     if:
       contains('refs/heads/develop', github.ref )
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
       - name: merged request
         run: |
           echo PR ${{github.refs}} ${{ github.ref_name }} ${GITHUB_REF##*/}
-      - name: Verify static files
-        id: verify-static-files
+      - name: get static files
+        id: changed-static-files
+        uses: tj-actions/changed-files@v23
         with:
-          path: '/'
-          pattern: '**/static/**'
-
-      - name: Run step only when any of the above static files change.
-        if: steps.verify-static-files.outputs.all_modified_files == 'true'
+          files: |
+            **/static/**
+            **/*.css
+            **/*.js
+      - name: Run step only when any of the above static files changed.
+        if: steps.changed-static-files.outputs.all_modified_files == 'true'
         run: |
           echo "Changed static files" 
 
