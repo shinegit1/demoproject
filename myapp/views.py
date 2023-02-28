@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+from myapp.models import Contact
 
 
-def home_page(request):
-    context = {'name': "sonam"}
-    return render(request, 'home_page.html', context)
+class ContactListView(ListView):
+    model = Contact
+    template_name = 'contact_list.html'

@@ -1,0 +1,20 @@
+[
+  {
+    "model": "myapp.contact",
+    "pk": 1,
+    "fields": {
+      "name": "sonam",
+      "age": 24,
+      "country": "Rishikesh"
+    }
+  },
+  {
+    "model": "myapp.contact",
+    "pk": 2,
+    "fields": {
+      "name": "Neetu",
+      "age": 25,
+      "country": "Dehradun"
+    }
+  }
+]
