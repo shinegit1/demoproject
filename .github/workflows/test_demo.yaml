@@ -16,6 +16,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        shell: python
       - name: Test with pytest
         run: |
           pytest
@@ -35,7 +36,7 @@ jobs:
           files: |
             **/static/**
       - name: Run step only when any of the above static files changed.
-        if: steps.changed-static-files.outputs.any_changed == 'true'
+        if: steps.changed-static-files.outputs.any_modified == 'true'
         run: |
           print("static files changed")
         shell: python
@@ -46,7 +47,7 @@ jobs:
           files: |
             **/000**.py
       - name: Run step only when any of the above migration files changed.
-        if: steps.changed-migration-files.outputs.any_changed == 'true'
+        if: steps.changed-migration-files.outputs.any_modified == 'true'
         run: |
            print("migration files changed")
         shell: python

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/hello.css' %}">
+</head>
+<body>
+    <h1>Hello User</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>age</th>
+            <th>City</th>
+        </tr>
+        {% for contact in object_list %}
+            <tr>
+                <td>{{contact.id}}</td>
+                <td>{{contact.name}} </td>
+                <td>{{contact.age}} </td>
+                <td>{{contact.city}} </td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
